@@ -35,20 +35,22 @@ public class MongoDB extends Database {
         storeTable(tableName, schemaArgs);
     }
 
-    @Override
-    public void select(String tableName, String key, String value) {
-        FindIterable<Document> result = mongoDb.getCollection(tableName).find(eq(key, value));
+    private void getQueryResults(FindIterable<Document> result) {
         for (Document doc : result) {
             System.out.println(doc);
         }
     }
 
     @Override
+    public void select(String tableName, String key, String value) {
+        FindIterable<Document> result = mongoDb.getCollection(tableName).find(eq(key, value));
+        getQueryResults(result);
+    }
+
+    @Override
     public void selectAll(String tableName) {
         FindIterable<Document> result = mongoDb.getCollection(tableName).find();
-        for (Document doc : result) {
-            System.out.println(doc);
-        }
+        getQueryResults(result);
     }
 
     @Override

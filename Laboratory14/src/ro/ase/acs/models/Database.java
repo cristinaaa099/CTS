@@ -28,8 +28,7 @@ public abstract class Database implements DataAccess {
         this.tables = tables;
     }
 
-    public void storeTable(String table, List<String> schemaArgs)
-    {
+    public void storeTable(String table, List<String> schemaArgs) {
         tables.put(table, schemaArgs);
     }
 
